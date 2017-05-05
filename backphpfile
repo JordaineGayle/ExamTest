@@ -1,0 +1,94 @@
+<?php 
+
+    class File_Upload{
+        public $name;
+        public $extension;
+        public $type;
+        public $files;
+        public $filess;
+        public $tmp_name;
+        public $location;
+        public $move_dir;
+        
+        
+        public function __construct(){
+            $this->name = $_FILES['file']['name'];
+            $this->extension = strtolower(substr($this->name, strpos($this->name, '.') + 1));
+            $this->type = $_FILES['file']['type'];
+            $this->tmp_name = $_FILES['file']['tmp_name'];
+            $this->Uploading();
+                                          
+        }
+        
+        public function Uploading(){
+            $this->Uploading_PDF_File_To_Server();
+        }
+        
+        public function Uploading_PDF_File_To_Server(){
+            if(isset($this->name)){
+                if(!empty($this->name)){
+                    
+                    if($this->extension == 'pdf'){
+                        $this->location = 'Transcripts/pdfs/pdfFiles/';
+                     
+                        
+                        $this->Checking_For_Files($this->location,$this->name);
+                        
+                        $fileOnServer = $this->files;
+                        if($fileOnServer == false){
+                        
+                        $this->Move_PDF_Files_To($this->tmp_name,$this->location,$this->name);
+                        
+                        $PDF_FILE = $this->move_dir;
+                        
+                        if($PDF_FILE == true){
+                            echo "File Uploaded Successfully!";
+                        }else{
+                            echo "File Upload Failed";
+                        }
+                        }else{
+                            echo "Please Rename the file its already been uploaded";
+        
+                        }
+                    }else{
+                        echo "Only PDF files are allowed!";
+                        unlink($this->tmp_name);
+                    }
+                    
+                }else{
+                    echo "Please Select a File to Upload";
+                }
+            }
+        }
+        
+        public function Move_PDF_Files_To($tname,$loc,$fname){
+            $this->move_dir = move_uploaded_file($tname,$loc.$fname);
+        }
+        
+        public function Checking_For_Files($path_string,$file_string){
+            
+            $this->files = file_exists($path_string."".$file_string);
+            
+            if($this->files){
+                
+            }else{
+                
+            }
+        }
+                                          
+        
+    }
+
+$Loading = new File_Upload();
+
+?>
+
+
+<html>
+
+    <form action="Upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file"/><br/><br/>
+        <input type="submit" value="submit"/>
+    </form>
+
+</html>

@@ -1,0 +1,132 @@
+* {
+    padding:0;
+    margin:0;
+}
+
+body {
+    background-image: url('../assets/bakground.png');
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+input,select {
+	padding:10px;
+	margin:10px;}
+.header {
+    background-image: url('../assets/top.png');
+    background-repeat: repeat-x;
+    height:140px;
+    display: flex;
+    display: -webkit-flex;
+}
+.header input {
+	padding: 7px;
+	width:40%;
+	}
+.loginButton {
+    color:white;
+    background-color: #27777C;
+    font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	border-radius: 20px;
+	border:none;
+	padding:7px 15px;
+	text-align: center;
+	margin:3px 188px;
+	float:left;
+	cursor:pointer;
+}	
+#center a {
+	text-decoration:none;}
+.header span {
+    flex:1;
+    -webkit-flex:1;
+}
+
+.header h2 {
+    margin: 34px 9px;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+}
+
+.header li {
+    list-style: none;
+    display: inline;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+}
+aside div,section div {
+	margin:0 0 30px 0;
+    background-image: url('../assets/sidebar_box.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.centerAlign {
+	font-weight:bold;text-align:center;}
+aside h2,p{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+}
+aside{
+    margin:10px;
+    flex:1;
+    -webkit-flex:1;
+}
+section{
+    flex:2;
+    -webkit-flex:2;
+}
+.profile_section {
+	flex:3;
+    -webkit-flex:3;
+	}
+.profile_aside p {
+	text-align:left;
+	cursor:pointer;
+	padding:6px 24px;}	
+main {
+    width:100%;
+    display: flex;
+    display: -webkit-flex;
+}
+.joinMain td {
+	padding:5px}
+.join {
+    margin:30px 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+}
+.joinMain {
+    margin-top:5px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+    padding:25px;
+    margin:4px;
+}
+i,span {
+    cursor: pointer;
+}
+section p {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #27777C;
+}
+.button {
+	color:white;
+	background-color:#27777C;
+	padding: 8px 15px;
+    border-radius: 10px;
+	cursor:pointer;
+	transition-property:padding;
+	transition-duration:.5s;
+	}
+.button:hover {
+	background-color:#216590;
+	padding:10px 15px;
+	}	

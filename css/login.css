@@ -1,0 +1,125 @@
+*{
+	 margin:0;
+	 padding:0;
+}
+
+.loginheader {
+    width:114px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+	font-size: 45px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 58.5px;
+	text-align: center;
+	color:#27777C;
+}
+.login {
+    width:300px;
+    text-align:center;
+    margin:50px auto;
+    display:none;
+}
+.inputholder {
+    width:100%;
+    background-color: white;
+    text-align:left;
+}
+.inputholder input {
+    padding:16px 8px;
+    background-color: transparent;
+    color: #27777C;
+    font-style: italic;
+    font-weight: bold;
+    border:none;
+}
+.inputholder input:focus {
+    outline:none;
+}
+.inputholder a {
+    color: #27777C;
+    font-style: italic;
+    font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.loginButton {
+    color:white;
+    background-color: #27777C;
+    font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	border-radius: 20px;
+	border:none;
+	padding:7px 15px;
+	text-align: center;
+	margin:18px 63px;
+	float:left;
+	cursor:pointer;
+}
+.loginButton:hover {
+    background-color: #B7777b;
+}
+.loginRegister{
+    float:left;
+    text-decoration: none;
+    color: #27777C;
+    font-size: 11px;
+    margin:0 63px;
+    font-family: 'Open Sans', sans-serif;
+}
+.bold {
+    font-weight: bold;
+}
+
+.Coach {
+    width: 332px;
+    float:left;
+    border-radius: 20px;
+    background-color:rgba(15,47,49,.4); 
+    cursor: pointer;
+    -webkit-transition-property: margin; /* Safari */
+    transition-property: margin;
+    transition-duration:.5s;
+    -webkit-transition-duration:.5s;
+}
+.Coach:hover {
+    margin:15px;
+}
+.Coach h2,.Student h2 {
+    color:white;
+    margin: 100px 0;
+    
+}
+.Student {
+    width: 332px;
+    float:right;
+    border-radius: 20px;
+    background-color:rgba(15,47,49,.4); 
+    cursor: pointer;
+    -webkit-transition-property: margin; /* Safari */
+    transition-property: margin;
+    transition-duration:.5s;
+    -webkit-transition-duration:.5s;
+}
+.Student:hover {
+    margin:15px;
+}
+
+.policy {
+    width:700px;
+    height:400px;
+    overflow: scroll;
+    text-align:center;
+    margin:50px auto;
+    line-height: 24.5px;
+}
+
+/*
