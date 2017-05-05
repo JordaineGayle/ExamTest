@@ -44,9 +44,12 @@
                     if($_GET['error'] == "noaccept"){
                         echo "Please accept the terms and conditions before you continue";
                     }
+                    if($_GET['error'] == "emailExist"){
+                        echo "There is already another account associated with this email.";
+                    }
                 ?>
             </strong>
-            <a class="loginRegister" href="register.html">Already have an account? <strong>Login</strong></a>
+            <a class="loginRegister" href="login.html">Already have an account? <strong>Login</strong></a>
             </form>
         </div>
     </body>

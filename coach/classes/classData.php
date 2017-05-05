@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class classroom extends configuration {
 	public $classname,$video;
 		
@@ -18,7 +20,6 @@ class classroom extends configuration {
 		
 		public function assignment($classID){
 			$query = $this->connect->query("SELECT * FROM `class_assignment` WHERE `class_ID`='$classID' ");
-			echo "<table id='assignment'>";
 			
 			while($result = $query->fetch_assoc()){
 				
@@ -26,32 +27,96 @@ class classroom extends configuration {
 					
                     	<tr>
                         	<td><?php echo $result['title'];?></td>
-                            <td><?php echo $result['assignment'];?></td>
-                            <td><a class="btn" onclick="ManageAssing('delete','<?php echo $result['class_ID']?>')">Delete</a></td>
-                            <td><a class="btn" onclick="ManageAssing('edit','<?php echo $result['class_ID']?>')">Edit</a></td>
+                            <td><a class="btn" onclick="ManageAssing('delete','<?php echo $result['assignmentID'];?>','<?php echo $result['class_ID'];?>')">Delete</a></td>
+                            <td><a class="btn" onclick="ManageAssing('edit','<?php echo $result['assignmentID'];?>','<?php echo $result['class_ID'];?>')">Edit</a></td>
                         </tr>
                     
 				<?php
 				
 				}
 				
-				echo "</table><br><br>";
+				
 				
 				?>
 					<script>
-                    	function ManageAssing(action,classID){
+                    	function ManageAssing(action,assignmentID,classID){
 							
-							
-								$.post("classes/section_class.php",{action:action,classID:classID},function(data){
-									$("#assignment").html(data);
-									});
+							$.post("configuration/master_handler.php",{action:action,classID:classID,assignmentID:assignmentID,handle:"assignment"},function(data) {
+								//alert("hello");
+								$(".resources").html(data);
+																
+								});
 								
 							}
                     </script>
 				<?php
 			}
 			
+		public function showQuiz($classID) {
+			$query = $this->connect->query("SELECT * FROM `quiz` WHERE `class_ID`='$classID' ");
 			
-	}
-
+			while($result = $query->fetch_assoc()){
+				
+				?>
+					
+                    	<tr id="<?php echo $result['quizID']?>">
+                        	<td><?php echo $result['quiz_title'];?> </td>
+                            <td><a class="btn" onclick="ManageAssingQuiz('delete','<?php echo $result['quizID']?>','<?php echo $result['class_ID'];?>')">Delete</a></td>
+                            <td><a class="btn" onclick="ManageAssingQuiz('edit','<?php echo $result['quizID']?>','<?php echo $result['class_ID'];?>')">Edit</a></td>
+                        </tr>
+                    
+				<?php
+				
+				}
+				
+				?>
+					<script>
+						function ManageAssingQuiz(action,quizID){
+							$.post("configuration/master_handler.php",{action:action,handle:"quiz",quizID:quizID},function(data){
+								$("#"+data).fadeOut(400,function(){
+								$("#"+data).remove();	
+								});
+							});
+						}
+					</script>
+				<?php
+		}
+		
+		public function transcript($classID){
+		
+			$query = $this->connect->query("SELECT * FROM `course_class` WHERE `class_ID`='$classID' ");
+			
+			$result = $query->fetch_assoc();
+			
+			if(!empty($result['transcript'])){
+				
+				?>Transcript Name: <?php echo $result['transcript'];
+				?><br><br><a class='btn' href='classes/<?php echo $result['transcript'];?>'>view</a><?php
+				
+			}else{
+				?>
+					 <a class="btn" style="cursor:pointer" onclick="addTranscipt()">Add Transcript</a><br><br>
+				<?php
+			}
+}
+	
+		public function course_image($target_file) {
+			$courseID = $_SESSION['courseID'];
+			$checkquery = "SELECT `image` FROM `course` WHERE `course_ID`='$courseID' ";
+			$checkresult = $checkquery->fetch_assoc();
+			
+			$image = $checkresult['image'];
+			if(isset($image) && !empty($image)){
+					str_replace("classes","",$image);
+					// I stopped here, replace string
+					unlink($image);
+			}
+			
+			
+			$query = "UPDATE `course` SET `image`='$target_file' WHERE `course_ID`='$courseID' ";
+			$this->connect->query($query);
+			
+			
+		}
+		}
 ?>

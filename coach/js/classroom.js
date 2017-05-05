@@ -81,7 +81,7 @@ function load_course(course){
 		});
 	}
 	
-	
+
 	
 	
 function UpdateOverview(ID){

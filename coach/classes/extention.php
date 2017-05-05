@@ -24,7 +24,26 @@ class extention extends configuration {
 			}else{
 				return false;
 				}
-		}	
+		}
+	public function addCourse($course,$account) {
+	    
+	    $this->connect->query("INSERT INTO `course` (`course_name`,`account`) VALUES ('$course','$account')");
+	   
+	   $query = $this->connect->query("SELECT * FROM `course` WHERE `account`='$account' ");
+	   
+	   
+	   while($result = $query->fetch_assoc()){
+	    
+	    ?>
+	         <div class="addSomething" onClick="">
+              	<a onclick="load_course('<?php echo $result['course_name'];?>')"><?php echo $result['course_name'];?></a>
+            
+              </div>
+	    <?php
+	       
+	   }
+	    
+	}	
 	}
 
 $check = $_POST["collect"];
@@ -36,9 +55,10 @@ switch ($check){
 	case "general":
 	
 	?>
-    <div style="background-image:url('https://bytesizemoments.com/wp-content/uploads/2014/04/placeholder3.png');width:250px;height:200px;float:left; background-position:center">
+    <label for="profilepic"><div style="background-image:url('https://bytesizemoments.com/wp-content/uploads/2014/04/placeholder3.png');width:250px;height:200px;float:left; background-position:center">
     
-    </div>
+    </div></label>
+    <input type='file' id='profilepic' onchange='uploadProfileImage()' hidden>
     <div id="info" style="float:left;width: 648px;margin:0 20px">
     	<table>
         <h1>Profile</h1>
@@ -177,74 +197,16 @@ switch ($check){
 	case "addCourseEdit":
 	$verification = $ext->checkAuthorization($_SESSION["account"]);
 	if($verification == true){
-		
-		?>
-        <h2>Please fill out the form below as it relates to the Course</h2>
-        <div id="setCourse">
-        <table style="text-align:center">
-        	<tr>
-        		<td>Subject</td>
-                <td><input type="text" name="course_tite" disabled value="<?php echo $subject;?>"></td>
-        	</tr>
-        	<tr>
-            	<td>Aims of the Course</td>
-                <td>How many Aims are within this Course?<input type="number" style="width:30px" name="aimNumber" maxlength="2"></td>
-            </tr>
-            <tr>
-            	<td>Course Syllabus</td>
-                <td>How many sections are within this syllabus? <input type="number" name="syllNumber" style="width:30px" maxlength="2"></td>
-            </tr>
-            <tr>
-            	<td>Days available</td>
-                <td>Monday:<input type="checkbox" id="days" value="Mon"><br />
-                Tuesday: <input type="checkbox" id="days" value="tue" /><br />
-                Wednesday: <input type="checkbox" id="days" value="wed" /><br />
-                Thursday: <input type="checkbox" id="days" value="thur" /><br />
-                Friday: <input type="checkbox" id="days" value="wed" /><br /> </td>
-            </tr>
-            <tr>
-            	<td>Time Frame</td>
-                <td>10:00 AM - 12:00 PM<input type="checkbox" id="timeFrame" value="10:00 AM - 12:00 PM"><br />
-                12:00 PM - 2:00PM <input type="checkbox" id="timeFrame" value="12:00 PM - 2:00PM" /><br />
-                2:00PM - 4:00PM <input type="checkbox" id="timeFrame" value="2:00PM - 4:00PM" /><br />
-                4:00PM - 6:00PM <input type="checkbox" id="timeFrame" value="4:00PM - 6:00PM" /><br />
-                6:OOPM - 8:00PM <input type="checkbox" id="timeFrame" value="6:OOPM - 8:00PM" /><br />
-                8:OOPM - 10:00PM <input type="checkbox" id="timeFrame" value="8:OOPM - 10:00PM" /><br /> </td>
-            </tr>
-            <td>
-            	<td></td>
-                <td><a class="button" onclick="createCourse()">Create Course</a></td>
-            </td>
-        </table>
-        </div>       
-        <script>
-        	function createCourse() {
-				var aim = $("input[name=aimNumber]").val();
-				var syllNumber = $("input[name=syllNumber]").val();
-				var daysArray = new Array(); 
-				var timeArray = new Array();
-				 $("#days:checked").each(function(){
-					 var variable = $(this).val();
-					 daysArray.push(variable);
-					});
-				 $("#timeFrame:checked").each(function() {
-                    var timeVariable = $(this).val();
-					timeArray.push(timeVariable);
-                });	
-					days = daysArray.toString();
-					times = timeArray.toString();
-								
-				$.post("classes/courseScripts.php",{aim:aim,syllNumber:syllNumber,daysArray:days,timeArray:times,course_Title:"<?php echo $subject;?>"},function(data){
-					$("#setCourse").html(data);
-				});
-			}	
-        </script> 
-		<?php
-		
-		}else{
-			?><a style='color:red'>You are not an authorized coach of Simms Online Academy, Please Contact your Supervisor for clearance. </a><?php ;
-			}
-	
+	    
+	    $ext->addCourse($subject,$_SESSION["account"]);
+	   
+	    
+	}else{
+	    
+	    echo "<p style='color:red'>You are not authorized to use this platform. Please contact your supervisor</p>";
+	    
+	}
+
 	break;
 	
 	case "addCourseView":

@@ -3,8 +3,7 @@
 include "delete.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    @$getid = secure_data($_POST['id']);
-    @$ErroCheck = secure_data($_POST['action']);
+    @$getid = secure_data($_POST['info']);
 }
 
 

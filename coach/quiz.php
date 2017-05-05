@@ -21,6 +21,7 @@ require "../classes/config.php";
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <link href="css/video-js.css" rel="stylesheet">
+      <script type="text/javascript" src="../js/jquery-2x.min.js"></script>
       <script src="js/videojs-ie8.min.js"></script>
       
       
@@ -61,10 +62,10 @@ require "../classes/config.php";
               
                     <h2>Quiz Creator Tool</h2>
                     
-                    <div onclick="questionType('short')">
+                    <div class="questiontype" onclick="questionType('short')">
                         <p>Multiple Choice Questions</p>
                     </div>
-                    <div onclick="questionType('long')">
+                    <div class="questiontype" onclick="questionType('long')">
                         <p>Short Answer Questions</p>
                     </div>
               
@@ -82,6 +83,51 @@ require "../classes/config.php";
         <script type="text/javascript" src="../js/jquery-2x.min.js"></script>
         <script src="ckeditor/ckeditor.js"></script>
         <script>
+            function addQuestion(){
+                
+                 var counter = $("#counter").val();
+                counter = Number(counter);
+                counter = counter + 1;
+                counter = String(counter);
+                $("#counter").val(counter);
+                
+                $("#questionContainer").append("<div class='question"+counter+"'></div>");
+                
+                $(".question"+counter).load("quizApp/loadquiz.html #newQuestion");
+                
+               
+                
+            }
+            
+            function SaveQuiz(){
+                 var counter = $("#counter").val();
+                var testTime = $("input[name=timeMinutes]").val();
+                var testTitle = $("input[name=quiztitle]").val();
+                counter = parseInt(counter);
+                
+                   $.post("configuration/master_handler.php",{testTime:testTime,testTitle:testTitle,handle:"addQuiz",phase:"phaseOne",classID:'<?php echo $_GET["classID"]; ?>'},function(data){
+                   $("#short").html(data);
+               });
+                
+                for(i = 1;i <= counter;i++){
+                    var question = $(".question"+i+" input[name=question]").val();
+                    var option1 = $(".question"+i+" input[name=option1]").val();
+                    var option2 = $(".question"+i+" input[name=option2]").val();
+                    var option3 = $(".question"+i+" input[name=option3]").val();
+                    var option4 = $(".question"+i+" input[name=option4]").val();
+                    
+                    $.post("configuration/master_handler.php",{question:question,option1:option1,option2:option2,option3:option3,option4:option4,handle:"addQuiz",phase:"phaseTwo"},function(data){
+                       
+                       
+                    });
+                }
+                
+               
+             
+               
+               
+            }
+            
 		
             function questionType(type) {
                 if(type == "short"){

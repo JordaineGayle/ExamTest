@@ -28,7 +28,7 @@ require "../classes/config.php";
             <span style="text-align:center" id="center">
             <div>
                 <ul style="margin-top:22px">
-                    <a><li>Dashboard | </li></a>
+                    <a href='index.php'><li>Dashboard | </li></a>
                     <a><li>Classroom | </li></a>
                     <a href="profile.php"><li>Profile | </li></a>
                     <li>Acheivement | </li>
@@ -57,13 +57,13 @@ require "../classes/config.php";
                 <a onClick="addCourceSelection('Accounts')">Principle of Accounts</a>
                 <a onClick="addCourceSelection('Office Administration')">Office Administration</a>
                 <a onClick="addCourceSelection('Information Technology')">Information Technology</a>
-                
+                <a onClick="addCourceSelection('French')">French</a>
             </div>
         </div>
         
         <main>
             <main>
-            <aside class="profile_aside"></aside>
+            <aside class="profile_aside">
                 <div>
                    <h2>Current Courses</h2> 
                    <ul id="course_list">
@@ -81,7 +81,11 @@ require "../classes/config.php";
               <h2>Please select a Course to start</h2>
               <div class="addSomething" onClick="addCourse('add')">
               	<i class="material-icons">add_box</i>
+              	
               </div>
+              <?php echo $data->showcurrentCourses($_SESSION['account']);?>
+              
+              <div style='clear:both;height:10px'>.</div>
                 </div>
                 
                 <div class="joinMain">
@@ -93,7 +97,7 @@ require "../classes/config.php";
         
         
         <!--scripts-->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-2x.min.js"></script>
         <script src="js/classroom.js"></script>
         <script src="ckeditor/ckeditor.js"></script>
         

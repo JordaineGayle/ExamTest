@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="coach.css" server="ftp.utopiatehc.com" local="131349509765197492" remote="131349684600000000" Dst="0" />
-<file name="video-js.css" server="ftp.utopiatehc.com" local="131344536139931834" remote="131344509000000000" Dst="0" />
-<file name="quiz.css" server="ftp.utopiatehc.com" local="131352832233928272" remote="131353706400000000" Dst="0" />
+
+<file name="login.css" server="ftp.utopiatehc.com" local="131265436515591059" remote="131381619000000000" Dst="0" />
+<file name="register.css" server="ftp.utopiatehc.com" local="131370284243133260" remote="131381619000000000" Dst="0" />
+
 </dwsync>

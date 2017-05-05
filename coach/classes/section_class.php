@@ -34,17 +34,17 @@ class section extends configuration {
             
             	
                 	
-                    <tr >
+                    <tr id="classrecord<?php echo $classID;?>">
                     	<td ><input type='checkbox' onselect="selectClass()"></td>
                         <td><?php echo $classID;?></td>
                         <td><?php echo $result['class_name'];?></td>
                         <td>
                         <ul class="controlPanel">
                                 
-                            <li ><a href='#' class='btn delete' id='<?php echo $classID;?>'>delete</a></li>      
+                            <li ><a class='btn delete' id="<?php echo $classID;?>" onclick="deleteClass(id)">delete</a></li>      
                             <li><a class="btn">Move up</a></li>
                             <li><a class="btn">Move down</a></li>
-                            <li><a class="btn" href="classroomData.php?id=<?php $classID;?>" >Edit</a></li>
+                            <li><a class="btn" href="classroomData.php?id=<?php echo $classID;?>" >Edit</a></li>
                         </ul>
                         </td>
                     </tr>
@@ -54,12 +54,25 @@ class section extends configuration {
 			
 			?>
                 <script type="text/javascript" >
-                    $(function(){
+                	function deleteClass(classID) {
+                		if(confirm("Are you sure you want to delete")){
+                			$.post("configuration/del_handler.php",{info:classID},function(data){
+                				
+                				$("#classrecord"+classID).fadeOut(2000,function(){
+                					
+                					$("#classrecord"+classID).remove();
+                					
+                				});		
+                			});
+                		};
+                	}
+                	
+                   /* $(function(){
                         $(".delete").click(function(){
                             var element = $(this);
                             var userid = element.attr("id");
                             var info = 'id=' + userid;
-                            alert(info);
+                            
                             if(confirm("Are you sure you want to delete")){
                             $.ajax({
                             url: '../../simms/coach/configuration/call_del_func.php',
@@ -76,6 +89,7 @@ class section extends configuration {
                       return false;
                         });
                     });
+                    */
                     
                 </script>
             	</table>
@@ -146,7 +160,7 @@ class section extends configuration {
                        
                     </table>
                     <script>
-                    	functon editAssignment() {
+                    	function editAssignment() {
 							var id = $("input[name=ID]").val();
 							var name = $("input[name=assignmentNameEdit]").val();
 							var assignment = $("input[name=assignmentedit]").val();

@@ -3,32 +3,32 @@
 ?>
 <!DOCTYPE html>
 <html>
-
+    
     <head>
-	     <title>Simms Online Academy</title>
-
+	     <title>Simms Online Academy</title>		 
+		 
 		 <!----------META---------->
 		 <meta http-equiv="Content-Type" content="text/html; charset-utf-8">
-
+		 
 		 <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
 		 <link rel="stylesheet" href="css/register.css" type="text/css">
 		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-
+      
       <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
       <script type="text/javascript" src="js/register.js"></script>
     </head>
-
+    
     <body style="background-image:url(image/bakground.png);background-size:100%;">
         <header>
             <div class="loginheader">
             <a href="index.html"><img  src="image/logo.png" width="115px" ></a>
             </div>
         </header>
-
+        
         <div class="policy">
             <h1>Policy</h1>
-
+            
             <p>In consideration of your use of the Service, you will be required to provide current, accurate identification, contact, and other information as part of the registration process and/or continued use of the services. You agree that if you falsify any information that you are subject to disengagement from Simms Online Academy </p><br><p>
 
 Your privacy is very important to us and we are committed to protecting it. The Privacy Policy and User Agreement (the "Policy") explains what personal data we collect and how we use and disclose personal data collected from you. This Policy applies to the website for Simms Online Academy, a division of Simms Online Academy, Inc., at www.Simms Online Academyinternational.com (the "Site") and any other information collected from you by Simms Online Academy. The Policy does not govern the collection of information through any website other than through the Site; nor does this Policy govern the collection of information by any of our affiliated businesses or by third parties. By visiting or using the Simms Online Academy website, you agree to follow its rules. By visiting the Site or submitting personal data to us, you accept the terms described in this Policy. If you do not agree to this Policy, please do not use the Site and do not submit personal data to us.
@@ -62,7 +62,7 @@ Some parts of the Site use cookies and other technologies to collect this non-pe
 <h2>Changes to the Website</h2>
 <p>We may make improvements or changes to the information, services, products and other materials on this website, or terminate this website, at any time without notice. We may also modify these Terms and Conditions at any time, and such modification shall be effective immediately upon posting of the modified Terms and Conditions on this website. Accordingly, your continued access or use of this website is deemed to be your acceptance of the modified Terms and Conditions.</p>
         </div>
-
+        
         <div class="policy" style="overflow:auto">
             <h3>I agree to the terms set forth above</h3>
             <div style="width:90px;margin:0 auto">
@@ -70,5 +70,5 @@ Some parts of the Site use cookies and other technologies to collect this non-pe
           	</div>
         </div>
     </body>
-
+    
 </html>

@@ -18,6 +18,16 @@ h1 {
 	text-align: center;
 	color:#27777C;
 }
+h2 {
+    font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 58.5px;
+	text-align: center;
+	color:#27777C;
+}
 .register {
     width:423px;
     text-align:center;
@@ -104,6 +114,18 @@ h1 {
     text-align:center;
     margin:50px auto;
     line-height: 24.5px;
+}
+.policyLong {
+    width:700px;
+    height:400px;
+    text-align:center;
+    margin:50px auto;
+    line-height: 24.5px;
+}
+.policyLong p {
+    font-family: 'Open Sans', sans-serif;
+    color:#27777C;
+    font-size: 13px;
 }
 
 .policy h2 {

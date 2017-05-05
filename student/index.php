@@ -61,7 +61,7 @@ require "classes/profileData.php";
             <section>
                 <div class="joinMain" style="height:250px">
                     <p>You have not joined a course as yet</p>
-                    <i class="material-icons">add_box</i><span>Add a Course</span></div>
+                    <a href='classroom.php'><i class="material-icons">add_box</i><span>Add a Course</span></div></a>
         
                 </div>
                 

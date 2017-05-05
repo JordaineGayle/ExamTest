@@ -21,6 +21,22 @@ class data extends configuration {
 		<?php
 		
 		}
+		
+	public function showcurrentCourses($account){
+		 $query = $this->connect->query("SELECT * FROM `course` WHERE `account`='$account' ");
+	   
+	   
+	   while($result = $query->fetch_assoc()){
+	    
+	    ?>
+	         <div class="addSomething" onclick="load_course('<?php echo $result['course_name'];?>')">
+              	<a><?php echo $result['course_name'];?></a>
+            
+              </div>
+	    <?php
+	       
+	   }
+	}	
 	public function currentCourses($identifier) {
 		// check database for any courses 
 		$courseQuery = $this->connect->query("SELECT `course_name` FROM `course` WHERE `account`='$identifier' ");
@@ -35,6 +51,10 @@ class data extends configuration {
 			}
 		
 		
-		}		
+		}
+		
+	public function transcript(){
+		
 	}
+}
 	

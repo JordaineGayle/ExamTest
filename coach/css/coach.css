@@ -162,6 +162,8 @@ main {
 .addSomething {
 	padding:50px 20px;
 	border:dashed 2px #27777C;
+	background-color: rgba(173,255,47,.3);
+	background-image:none;
 	width:100px;
 	cursor:pointer;
 	float: left;
@@ -220,7 +222,7 @@ section p {
     border: 2px dashed lightgray;
     cursor: pointer;}
 .resources {
-	float:left;padding:15px;width:30%;}	
+	float:left;padding:15px;width:37%;}	
 .resources h2 {
 	text-align:center;}	
 .resources h3 {

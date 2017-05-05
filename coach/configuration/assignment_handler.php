@@ -1,7 +1,6 @@
 <?php
 
 
-require "config.php";
 
 class assignments extends configuration {
 	

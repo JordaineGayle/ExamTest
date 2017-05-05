@@ -102,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     @$unitControlID    	= test_input($_POST["unitControlID"]);
 	
-	
+	//updating overview data
 	@$SectionControlID    	= test_input($_POST["SectionControlID"]);
 	@$OverviewUpdate	= test_input($_POST["updateOverview"]);
 	@$courseID			= test_input($_POST["courseID"]);
@@ -110,6 +110,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	//updating section data
 	@$sectionUpdate   = test_input($_POST["sectionUpdate"]);
 	@$position		= test_input($_POST["position"]);
+	
+	//update image
+	@$unitControl = test_input($_POST["unitControl"]);
 
 }
 //escape function
@@ -123,19 +126,31 @@ function test_input($data)
 
 $control = new controlSet;
 
-if(isset($unitControlID) && !empty($unitControlID)){
-	echo $control->Overview($unitControlID);
-	}
-if(isset($OverviewUpdate) && !empty($OverviewUpdate)){
-	echo $control->setOverview($OverviewUpdate,$courseID);
-	}
-if(isset($SectionControlID) && !empty($SectionControlID)){
-	echo $control->Section($SectionControlID);
+if(isset($unitControlID) && !empty($unitControlID)){echo $control->Overview($unitControlID);}
+if(isset($OverviewUpdate) && !empty($OverviewUpdate)){echo $control->setOverview($OverviewUpdate,$courseID);}
+if(isset($SectionControlID) && !empty($SectionControlID)){echo $control->Section($SectionControlID);}
+if(isset($sectionUpdate) && !empty($sectionUpdate)){echo $control->setSection($_SESSION['account'],$courseID,$sectionUpdate,$position);}		
+if(!empty($unitControl)){ ?> 
+<h2>Click the choose files button below to upload a course image</h2>
+	<input type="file" onchange="uploadCourseImage()" id="courseImage">
 	
-	}
-if(isset($sectionUpdate) && !empty($sectionUpdate)){
-	echo $control->setSection($_SESSION['account'],$courseID,$sectionUpdate,$position);
-
-	}		
-	
+	<script>
+		function uploadCourseImage() {
+			var newFile = document.getElementById("courseImage").files[0];
+		var formData = new FormData();
+		formData.append("awesomefile",newFile);
+	$.ajax({
+		url: "courseImage.php",
+		type: "POST",
+		data: formData,
+		cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+        	alert(data);
+        }
+	});
+}
+	</script>	
+ <?php }	
 

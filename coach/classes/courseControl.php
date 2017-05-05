@@ -8,8 +8,9 @@ class control extends configuration {
 		$showQuery = $this->connect->query("SELECT * FROM `course` WHERE `account`='$account' AND `course_name`='$course' ");
 		$showResults = $showQuery->fetch_assoc();
 		$courseID = $showResults['course_ID'];
+		$courseImage = $showResults['image'];
 		
-		
+		$_SESSION['courseID'] = $courseID;
 		
 		
 		// change comma separated value in data value 
@@ -17,12 +18,13 @@ class control extends configuration {
 		?>
         <ul class="controlPanel">
         	<li onClick="controlSet('days')">Update Support Days</li>
-            <li onClick="controlSet('times')">Update Support Times</li>
+            <li onClick="controlSet('image','<?php echo $courseID;?>')">Course Display Image</li> <!--change times to image-->
             <li onClick="controlSet('aims','<?php echo $courseID;?>')">Update Aims</li>
             <li onClick="controlSet('sections','<?php echo $courseID;?>')">Update Sections</li>
             <li onClick="controlSet('overview','<?php echo $courseID;?>')">Update Overview</li>
         </ul>
         <script>
+		
         // course control structions 
 function controlSet(unitControl,Identifier){
 
@@ -41,8 +43,10 @@ function controlSet(unitControl,Identifier){
 				
 					});
 		 break;
-		 case "":
-		 
+		 case "image":
+			$.post('classes/controlsetext.php',{unitControl:Identifier},function(data) {
+				$("#courseUpdates").html(data);
+			});
 		 break;
 		 
 		 default:
@@ -57,10 +61,19 @@ function controlSet(unitControl,Identifier){
         <hr>
         <div id="courseUpdates">
 			<h1><?php echo $showResults['course_name'];?> <span style="font-size:14px">ID: <?php echo $showResults['course_ID'];?></span> </h1><br><br>
-           
+			
+			<?php 
+				if(isset($courseImage) && !empty($courseImage)){
+					echo "<a style='background-position:center;background-image:url($courseImage);width:450px;height:400px;float:left'></a>";
+				}else{
+					echo "<a style='background-position:center;background-image:url(assets/placeholder.png);width:450px;height:400px;float:left'></a>";
+				}
+			?>
+			
+			
             	
                 
-            <div>
+            <div style="text-align:left;padding:15px;float:left">
             	Support Aims:
                 <ul class="supportList">
                 	<?php echo $this->showAim($courseID);?>
@@ -68,7 +81,9 @@ function controlSet(unitControl,Identifier){
                 </ul>
             </div>
             
-             <div>
+			<div style="clear:both"></div>
+			
+            <div>
             	Support Sections:
                 <ul class="supportList">
                 	<?php echo $this->showSection($courseID);?>
@@ -109,7 +124,7 @@ function controlSet(unitControl,Identifier){
 		?>
 			<input type="text" id="setSection">
             <input type="hidden" id="sectionPosition" value="<?php echo $indexArray;?>">
-            <a class="button" onclick="UpdateSectionAdditional('<?php echo $fromID;?>')">Add Course</a>
+            <a class="button" onclick="UpdateSectionAdditional('<?php echo $fromID;?>')">Add Section</a>
 		<?php
 		
 		}			

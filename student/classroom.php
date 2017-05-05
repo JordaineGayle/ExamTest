@@ -3,7 +3,7 @@ session_start();
     if(!isset($_SESSION["account"]) && empty($_SESSION["account"])){
         header("Location:../../");
     }
-require "../classes/config.php";
+require "classes/config.php";
  require "classes/profileData.php"; 
  
  $data = new data;
@@ -46,7 +46,8 @@ require "../classes/config.php";
         </header>
         
         <main>
-            <main>
+            
+                
             <aside class="profile_aside">
                 <div>
                    <h2>Current Courses</h2> 
@@ -58,20 +59,48 @@ require "../classes/config.php";
             </aside>
             
             <section class="profile_section">
-                <div class="joinMain" id="main" style="height:250px">
-              <h2>Please select a Course to start</h2>
+                <div class="joinMain" id="main" >
+              
+              
+              <?php 
+                    $results = $data->checkPayment($_SESSION["account"]);
+                    
+                    if($results == true){
+                        ?>
+                            <h2>Please select a Course to start</h2>
+                            
+                            <?php echo $data->courses();?>
+                            <div style="height:2px;clear:both"></div>
+                        <?php
+                    }
+                    
+                    if($results == false){
+                        ?>
+                         <h2>Simms Online Academy Registration</h2>
+                         <p>Thank you for choosing Simms Online Academy for completing your preferred couse. To register for this course, please click on the button below to pay the registration fee. This fee is non refundable.</p>
+
+                   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="8JAR2ZD95YWDN">  
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+                        <?php
+                    }
+                ?>
                 </div>
-                
+                    
                 <div class="joinMain">
                     
                 </div>
             </section>
         </main>
-        </main>
+
         
         
         <!--scripts-->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="js/instructions.js"></script>
+        <script src="js/classroom.js"></script>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <?php 
 
+
 class data extends configuration {
 	public $name;
 	
@@ -19,6 +20,42 @@ class data extends configuration {
             <a class="loginButton" onClick="SaveName()">Save</a>
 		<?php
 		
-		}	
+		}
+	
+	// pull available courses from the database
+	public function courses() {
+		$query = $this->connect->query("SELECT * FROM `course`");
+		
+		while($result = $query->fetch_assoc()){
+			
+			?>
+				
+					<div class="dottedboxes" onclick="selectSubject('<?php echo $result['course_ID']?>')"><?php echo $result['course_name'];?></div>
+					
+				
+			<?php
+		}
+		
+		
+		}
+	
+	public function checkPayment($ID) {
+		// check if sign up payment was made
+
+		$query = $this->connect->query("SELECT `item_name` FROM `payments` WHERE `Account`='$ID' ");
+		
+		while($result = $query->fetch_assoc()){
+			
+			if($result['item_name'] == "registration"){
+
+			return	$results = true;
+			}else{
+			return	$results = false;
+			}	
+		}
+		
+		
+	}
+	
 	}
 	

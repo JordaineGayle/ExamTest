@@ -4,8 +4,8 @@ session_start();
         header("Location:../../");
     }
 require "../classes/config.php";
- require "classes/profileData.php";
- require "classes/classData.php"; 
+require "classes/profileData.php"; 
+require "classes/classData.php"; 
  
  $data = new data;
  $class = new classroom;
@@ -35,11 +35,11 @@ require "../classes/config.php";
             <span style="text-align:center" id="center">
             <div>
                 <ul style="margin-top:22px">
-                    <a><li>Dashboard | </li></a>
+                    <a href="index.php"><li>Dashboard | </li></a>
                     <a href="classroom.php"><li>Classroom | </li></a>
                     <a href="profile.php"><li>Profile | </li></a>
                     <li>Acheivement | </li>
-                    <li>Teachers </li>
+                    <li>students </li>
                 </ul>
             </div>
             </span>
@@ -101,22 +101,29 @@ require "../classes/config.php";
                 <a class="btn" style="cursor:pointer" onClick="showAssignment()">Add Assignment</a><br><br>
                 
                 <h3>Quiz</h3><br>
+                <table>
+                    <?php echo $class->showQuiz($_GET['id']);?>
+                </table>
+                <br><br>
                 <a class="btn" href="quiz.php?classID=<?php echo $_GET['id'];?>" style="cursor:pointer">Add Quiz</a><br><br>
                 
                 <h3>Transcript</h3><br>
-                <a class="btn uploader" style="cursor:pointer">Add Transcript</a><br><br>
+                <?php 
+                   echo $class->transcript($_GET['id']);
+                ?>
+               
                 <div class="get"></div>
-                     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
                   
                 <script type="text/javascript">
-                    
-                  $('document').ready(function(){
-                      $('.uploader').click(function(){
-                          $.post("/simms/coach/classes/uploadform.php",function(data){
-                              $(".get").html(data);
-                          });
-                      });
-                  });//needs to minify this
+                
+                    function addTranscipt(){
+                        $.get("quizApp/transcript.php?classID=<?php echo $_GET['id'];?>",function(data,status){
+                             $(".get").html(data);
+                        });
+                       
+                        //$.post("/simms/coach/classes/uploadform.php",function(data){});
+                    }
+                
                     
                 </script>
                
@@ -136,14 +143,16 @@ require "../classes/config.php";
         
         
         <!--scripts-->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-2x.min.js"></script>
         <script src="js/classroom.js"></script>
+        <script type="text/javascript" src="js/sizeValidation.js"></script>
+
         <script src="ckeditor/ckeditor.js"></script>
         <script>
 		
-			// I stopped here 
+			// test here later
         	function uploadVideo(classID) {
-				var input = $('#videoUpload')[0]; // You need to use standart javascript object here
+				var input = $('#videoUpload')[0]; // cleared
 				var formData = new FormData();
 				formData.append('image',$('input[type=file]')[0].files[0]);
 				formData.append('classID',classID);
@@ -184,6 +193,10 @@ require "../classes/config.php";
 			
 			$(document).ready(function(){
   $('#my-video').bind('contextmenu',function() { return false; });
+  
+
+           
+        
 });
 			
 			
@@ -198,13 +211,8 @@ require "../classes/config.php";
 								}
 				
 				
-			function addQuiz() {
-				
-				}
-				
-			function addTranscipt() {
-				
-				}		
+			
+			
 			
 			
         </script>

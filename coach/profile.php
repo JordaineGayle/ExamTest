@@ -14,7 +14,7 @@ require "classes/profileData.php";
 <html>
     <head>
         
-        <link rel="stylesheet" href="css/student.css" type="text/css">
+        <link rel="stylesheet" href="css/coach.css" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <!--scripts-->
@@ -35,7 +35,7 @@ require "classes/profileData.php";
                     <a href="classroom.php"><li>Classroom | </li></a>
                     <a href="profile.php"><li>Profile | </li></a>
                     <li>Acheivement | </li>
-                    <li>Teachers </li>
+                    <li>Students </li>
                 </ul>
             </div>
             </span>
